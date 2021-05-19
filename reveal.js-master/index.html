@@ -1,0 +1,142 @@
+<!doctype html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+		<title>placeArt</title>
+
+		<link rel="stylesheet" href="dist/reset.css">
+		<link rel="stylesheet" href="dist/reveal.css">
+		<link rel="stylesheet" href="dist/theme/black.css">
+
+		<!-- Theme used for syntax highlighted code -->
+		<link rel="stylesheet" href="plugin/highlight/monokai.css">
+	</head>
+	<body>
+		<div class="reveal">
+			<div class="slides">
+				<section>
+					<h2>Итоговый проект</h2>
+					<h3 style="color: #f62671">по курсу Проектирование динамических страниц</h3>
+					<p>Ясюлевич Вероника</p>
+				</section>
+				<section data-background-iframe="../index.html" data-background-interactive>		
+				</section>
+				<section data-auto-animate>
+					<h2 data-id="code-title">Получаем доступ к карточкам</h2>
+					<pre data-id="code-animation"><code class="hljs" data-trim data-line-numbers>
+						const cardsContainer = document.getElementById('cards-container');
+
+						let x = document.querySelectorAll('#cards-container .scene');
+						let y = document.querySelectorAll('#cards-container .gallery');
+
+						const cards = Array.from(x);
+						const cardsImage = Array.from(y);
+					</code></pre>
+				</section>
+				<section data-auto-animate>
+					<h2 data-id="code-title">Получаем доступ к карточкам (2 способ)</h2>
+					<pre data-id="code-animation"><code class="hljs" data-trim data-line-numbers>
+						const cards = [...document.querySelectorAll('#cards-container .scene')];
+						const cardsImage = [...document.querySelectorAll('#cards-container .gallery')];
+					</code></pre>
+					<p>Три точки - это <span style="color: #f62671">spread</span>. Позволяет расширить доступные для итерации элементы (например, массивы или строки) в местах где ожидаемое количество аргументов для вызовов функций равно нулю или больше нуля</p>
+				</section>
+				<section data-auto-animate>
+					<h2 data-id="code-title">По клику вызыаем функцию</h2>
+					<pre data-id="code-animation"><code class="hljs" data-trim data-line-numbers>
+						cardsContainer.addEventListener('click', e => {
+							const cardNode = getNode(e.target, 'scene');
+						
+							toggleCard(cardNode);
+						});
+					</code></pre>
+					<p><span style="color: #f62671">e</span> - описание события, клик</p>
+					<p><span style="color: #f62671">target</span> - элемент, на котором оно было вызвано</p>
+				</section>
+				<section data-auto-animate>
+					<h2 data-id="code-title">Функция getNode</h2>
+					<pre data-id="code-animation"><code class="hljs" data-trim data-line-numbers>
+						function getNode(node, className) {
+							while (node) {
+								if (node.classList?.contains(className)) {
+									return node;
+								} else {
+									return getNode(node.parentNode, className);
+								}
+							}
+						}
+					</code></pre>
+					<p><span style="color: #f62671">?</span> - оператор опциональной последовательности. Перед обращением к свойству объекта сперва проверяется есть ли оно там, если нет, то строчка просто игнорируется</p>
+				</section>
+				<section data-background-iframe="../index.html" data-background-interactive>		
+				</section>
+				<section data-auto-animate>
+					<h2 data-id="code-title">Плагин Accordion</h2>
+					<pre data-id="code-animation"><code class="hljs" data-trim data-line-numbers>
+						<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+						<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+						<script>
+						$( function() {
+							$( "#accordion" ).accordion();
+						} );
+						</script>
+					</code></pre>
+					<p>Плагин - <a href="https://jqueryui.com/accordion/">jqueryui.Accordion</a></p>
+				</section>
+				<section data-background-iframe="../index.html" data-background-interactive>		
+				</section>
+				<section data-auto-animate>
+					<h2 data-id="code-title">Подключение Jquery</h2>
+					<pre data-id="code-animation"><code class="hljs" data-trim data-line-numbers>
+						<script src="Jquery/jquery-3.6.0.min.js"></script>
+						</script>
+					</code></pre>
+				</section>
+				<section data-auto-animate>
+					<h2 data-id="code-title">Получаем доступ к элементам</h2>
+					<pre data-id="code-animation"><code class="hljs" data-trim data-line-numbers>
+						$('#form').submit(function(e) {
+							e.preventDefault();
+							let first_name = $('#first_name').val();
+							let phone = $('#phone').val();
+						</script>
+					</code></pre>
+				</section>
+				<section data-auto-animate>
+					<h2 data-id="code-title">Проверка</h2>
+					<pre data-id="code-animation"><code class="hljs" data-trim data-line-numbers>
+						let regPh = /^(\+375|80)(29|25|44|33)(\d{3})(\d{2})(\d{2})$/;
+						let regN = /^[a-zA-Zа-яА-Я]+$/;
+
+						let validPhone = regPh.test(phone);
+						let validName = regN.test(first_name);
+						</script>
+					</code></pre>
+				</section>
+				<section data-background-iframe="../index.html" data-background-interactive>		
+				</section>
+				<section>
+					<h2>Спасибо за внимание!</h2>
+				</section>
+			</div>
+		</div>
+
+		<script src="dist/reveal.js"></script>
+		<script src="plugin/notes/notes.js"></script>
+		<script src="plugin/markdown/markdown.js"></script>
+		<script src="plugin/highlight/highlight.js"></script>
+		<script>
+			// More info about initialization & config:
+			// - https://revealjs.com/initialization/
+			// - https://revealjs.com/config/
+			Reveal.initialize({
+				hash: true,
+
+				// Learn about plugins: https://revealjs.com/plugins/
+				plugins: [ RevealMarkdown, RevealHighlight, RevealNotes ]
+			});
+		</script>
+	</body>
+</html>
