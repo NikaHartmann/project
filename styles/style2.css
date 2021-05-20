@@ -1,0 +1,50 @@
+a:hover:not(.logo) {
+    color: #c19396;
+    transition: 0.5s;
+}
+a:active:not(.logo) {
+    color: #FFFFFF;
+    transition: 0.5s;
+}
+.button, input[type="submit"], #accordion, select, .allBack {
+    cursor: pointer;
+}
+.first_screen .button:hover {
+    background-color: #14141296;
+    color: #C0C0C0;
+    transition: 0.5s;
+}
+.first_screen .button:active, input[type="submit"]:active {
+    background-color: #140203;
+    border: 1px solid #FFFFFF;
+    color: #FFFFFF;
+    transition: 0.5s;
+}
+input[type="submit"]:hover {
+    background-color: #2d0204;
+    transition: 0.5s;
+}
+*:focus {
+    outline: none;
+}
+input:focus {
+    border: 1px solid #FFFFFF;
+}
+:valid + label,
+:focus + label {
+  z-index: 4;
+  animation: rise 0.45s ease-out forwards;
+}
+
+@keyframes rise {
+  0% {
+    transform: translate(0, -.5rem);
+    color: #C0C0C0; 
+    opacity: 0;
+  }
+  100% {
+    transform: translate(-8px, -28px);
+    background-color: #080A07;
+    padding: 0 5px;
+  }
+}
